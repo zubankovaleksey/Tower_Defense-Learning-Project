@@ -1,12 +1,18 @@
 ﻿<Properties StartupConfiguration="{689D9C60-2577-4B28-C05E-EFF5B7059F6B}|">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PathFinder.cs">
+    <Files>
+      <File FileName="Assets/Scripts/CubeEditor.cs" Line="16" Column="1" />
+      <File FileName="Assets/Scripts/Waypoint.cs" Line="18" Column="30" />
+      <File FileName="Assets/Scripts/FindPath.cs" Line="13" Column="30" />
+      <File FileName="Assets/Scripts/EnemyMovement.cs" Line="16" Column="6" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Tower Defense" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="WayPoint.cs" selected="True" />
+                <Node name="PathFinder.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -16,7 +22,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="5ae61ae7-aeae-4d93-8a04-7e4fae599c59" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="cd83c64e-9c43-4226-88d9-1b7e0e8e451b" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

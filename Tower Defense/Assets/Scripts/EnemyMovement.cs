@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-   [SerializeField] List<WayPoint> wayPoints;
+   [SerializeField] List<Waypoint> waypoints;
 
     void Start()
     {
-        PrintWayPoints();
-        StartCoroutine(PrintWayPoints());
+        PrintWaypoinName();
+        StartCoroutine(PrintWaypoinName());
     }
 
-     IEnumerator PrintWayPoints()
+     IEnumerator PrintWaypoinName()
     {
-        foreach (WayPoint wayPoint in wayPoints)
+        foreach (Waypoint waypoint in waypoints)
         {
-            Debug.Log(wayPoint);
-            transform.position = wayPoint.transform.position;
+            Debug.Log(waypoint);
+            transform.position = waypoint.transform.position;
             yield return new WaitForSeconds(1f);
         }
     }

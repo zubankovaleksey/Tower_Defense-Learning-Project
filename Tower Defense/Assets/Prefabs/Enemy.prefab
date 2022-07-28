@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1078498265390214215}
-  - component: {fileID: 365754536}
+  - component: {fileID: 1023759891755690558}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &365754536
+--- !u!114 &1023759891755690558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,15 +42,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1078498265390214214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f00ada40401fc4185893f78d6a0bffb0, type: 3}
+  m_Script: {fileID: 11500000, guid: 5a8d61375002b4b169ee1c5b304ac827, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  waypoints: []
 --- !u!1 &1078498265472016422
 GameObject:
   m_ObjectHideFlags: 0
