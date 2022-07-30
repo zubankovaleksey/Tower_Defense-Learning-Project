@@ -5,8 +5,10 @@ public class PathFinder : MonoBehaviour
 {
     [SerializeField] Waypoint startPoint, endPoint;
     Dictionary<Vector2Int, Waypoint> grid = new Dictionary<Vector2Int, Waypoint>();
+    List<Waypoint> path = new List<Waypoint>();
     Queue<Waypoint> queue = new Queue<Waypoint>();
     bool isRuning = true;
+    Waypoint searchPoint;
 
     Vector2Int[] directions =
     {
@@ -16,41 +18,53 @@ public class PathFinder : MonoBehaviour
         Vector2Int.left
     };
 
-    void Start()
+    public List<Waypoint> GetPath()
     {
         LoadBlocks();
         PathFind();
-        //ExploreNearPoints();
+        CreatePath();
+        return path;
     }
 
-    //Метод поиска пути, от начальной точки
+    void LoadBlocks()
+    {
+        var waypoints = FindObjectsOfType<Waypoint>();
+
+        foreach (Waypoint waypoint in waypoints)
+        {
+            Vector2Int gridPos = waypoint.GetGridPos();
+
+            if (grid.ContainsKey(gridPos))
+                Debug.Log("Alert" + waypoint);
+            else
+            {
+                grid.Add(waypoint.GetGridPos(), waypoint);
+            }
+        }
+    }
+
     void PathFind()
     {
         queue.Enqueue(startPoint);
         while (queue.Count > 0 && isRuning == true)
         {
-            Waypoint searchPoint = queue.Dequeue();
+            searchPoint = queue.Dequeue();
             searchPoint.isExplored = true;
-            print("Исследовать соседние клетки из: " + searchPoint);
-            CheckForEndpoint(searchPoint);
-            ExploreNearPoints(searchPoint);
+            CheckForEndpoint();
+            ExploreNearPoints();
         }
         SetColorEndStart();
-        print("Можем сгенерировать путь?");
     }
 
-    //Метод объявляющий о нахождении финальной точки
-    void CheckForEndpoint(Waypoint searchPoint)
+    void CheckForEndpoint()
     {
         if (searchPoint == endPoint)
         {
-            print("Алгоритм нашел финальную точку");
             isRuning = false;
         }
     }
 
-    //Метод исследующий ближайшую точку, до нахождения финальной точки
-    void ExploreNearPoints(Waypoint from)
+    void ExploreNearPoints()
     {
         if (!isRuning)
         {
@@ -59,60 +73,47 @@ public class PathFinder : MonoBehaviour
         
         foreach (Vector2Int direction in directions)
         {
-            Vector2Int nearPointCoordinates = from.GetGridPos() + direction;
+            Vector2Int nearPointCoordinates = searchPoint.GetGridPos() + direction;
 
-            try
+            if (grid.ContainsKey(nearPointCoordinates))
             {
                 Waypoint nearPoint = grid[nearPointCoordinates];
                 AddPointQuee(nearPoint);
             }
-            catch
-            {
-
-            }
         }
     }
 
-    //Метод добавляющий точку в очередь
     void AddPointQuee(Waypoint nearPoint)
     {
-        //Если ближайшая не точка исследована, добавляем ее в очередь
-        if (nearPoint.isExplored)
+        if (nearPoint.isExplored || queue.Contains(nearPoint))
         {
             return;
         }
         else
         {
-            print("Добавить в очередь: " + nearPoint);
             nearPoint.SetTopColor(Color.blue);
             queue.Enqueue(nearPoint);
+            nearPoint.exploreFrom = searchPoint;
         }
     }
 
-    //Метод устанавливающий цвета для начальной и конечной точек
     void SetColorEndStart()
     {
         startPoint.SetTopColor(Color.green);
         endPoint.SetTopColor(Color.black);
     }
 
-    //Метод загрузки блоков в словарь
-    void LoadBlocks()
+    void CreatePath()
     {
-        //Поиск объектов с типом Waypoint
-        var waypoints = FindObjectsOfType<Waypoint>();
-
-        //Цикл позволяющий помещающий найденные объекты в словарь
-        foreach (Waypoint waypoint in waypoints)
+        path.Add(endPoint);
+        Waypoint prevPoint = endPoint.exploreFrom;
+        while (prevPoint != startPoint)
         {
-            Vector2Int gridPos = waypoint.GetGridPos();
-
-            if (grid.ContainsKey(gridPos))
-                Debug.Log("Alert" + waypoint);
-            else
-            { 
-                grid.Add(waypoint.GetGridPos(), waypoint);
-            }
+            prevPoint.SetTopColor(Color.gray);
+            path.Add(prevPoint);
+            prevPoint = prevPoint.exploreFrom;
         }
+        path.Add(startPoint);
+        path.Reverse();
     }
 }

@@ -60,6 +60,8 @@
     <Compile Include="Assets/Scripts/CubeEditor.cs" />
     <Compile Include="Assets/Scripts/PathFinder.cs" />
     <Compile Include="Assets/Scripts/EnemyMovement.cs" />
+    <Compile Include="Assets/Scripts/TowerBehavior.cs" />
+    <Compile Include="Assets/Scripts/EnemyDamage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
