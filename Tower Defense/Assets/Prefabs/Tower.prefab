@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerTop: {fileID: 8254614522028563727}
   targetEnemy: {fileID: 0}
+  shootRange: 30
+  bulletParticals: {fileID: 1009268436106633018}
 --- !u!1001 &1299825533092134673
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -168,6 +170,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d67a1bb452f76de4fba61914b886fffd, type: 3}
+--- !u!198 &1009268436106633018 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2019948150794887211, guid: d67a1bb452f76de4fba61914b886fffd, type: 3}
+  m_PrefabInstance: {fileID: 1299825533092134673}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8254614522028563727 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6955704362454442526, guid: d67a1bb452f76de4fba61914b886fffd, type: 3}
